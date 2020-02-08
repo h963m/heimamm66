@@ -1,5 +1,7 @@
 <template>
-  <router-link to="info">路由的链接</router-link>
+<div>
+   <el-button type="success">成功按钮</el-button>
+</div>
 </template>
 
 <script>
