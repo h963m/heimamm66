@@ -55,8 +55,8 @@
           >
         </el-form-item>
         <el-form-item>
-          <el-button type="primary">登录</el-button>
-          <el-button type="primary">注册</el-button>
+          <el-button class="my-btn" type="primary">登录</el-button>
+          <el-button class="my-btn" type="primary">注册</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -68,7 +68,21 @@
 <script>
 export default {
   // 组建的名字
-  name: "login"
+  name: "login",
+  data() {
+    return {
+      loginForm: {
+        // 手机号
+        phone: "",
+        // 密码
+        password: "",
+        // 验证码
+        loginCode: "",
+        // 是否勾选
+        isChecked: false
+      }
+    };
+  }
 };
 </script>
 
@@ -86,34 +100,50 @@ export default {
   align-items: center;
   /* 左右均分 */
   justify-content: space-around;
-  /* justify-content: space-between; */
   // 左侧盒子
-    .left-box {
-      width: 478px;
-      height: 550px;
-      background: rgba(245, 245, 245, 1);
-      .title-box{
-        display: flex;
-        align-items: center;
-        margin-top: 44px;
-        margin-left: 48px;
-        .logo{}
-        .title{
-          font-size: 24px;
-          margin-left: 16px;
-          margin-right: 14px;
-        }
-        .line{
-          height: 28px;
-          width: 1px;
-          background:rgba(199,199,199,1);
-          margin-left: 14px;
-          margin-right: 12px;
-        }
-        .sub-title{
-          font-size: 21px;
-        }
+  .left-box {
+    width: 478px;
+    height: 550px;
+    background: rgba(245, 245, 245, 1);
+    padding-right: 41px;
+    box-sizing: border-box;
+    .title-box {
+      display: flex;
+      align-items: center;
+      margin: 44px 0 27px 48px;
+      .title {
+        font-size: 24px;
+        margin-left: 16px;
+        margin-right: 14px;
+      }
+      .line {
+        height: 28px;
+        width: 1px;
+        background: rgba(199, 199, 199, 1);
+        margin-left: 14px;
+        margin-right: 12px;
+      }
+      .sub-title {
+        font-size: 21px;
       }
     }
+    // 登录验证码
+    .login-code{
+      width: 100%;
+      height: 40.8px;
+    }
+    .my-btn {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 26px;
+    }
+  }
+  // 协议区的布局
+  .el-checkbox {
+    display: flex;
+    .el-checkbox__label{
+      display: flex;
+    }
+  }
 }
 </style>
