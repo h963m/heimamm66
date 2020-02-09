@@ -10,17 +10,17 @@
         <sapan class="sub-title">用户登录</sapan>
       </div>
       <!-- 表单 -->
-      <el-form ref="form" :model="loginForm" label-width="43px">
+      <el-form ref="form" :model="loginForm" :rules="rules" label-width="43px">
         <!-- 手机号 -->
-        <el-form-item>
+        <el-form-item prop="phone">
           <el-input
             prefix-icon="el-icon-user"
             v-model="loginForm.phone"
             placeholder="请输入手机号"
           ></el-input>
-        </el-form-item>
+        </el-form-item> 
         <!-- 密码 -->
-        <el-form-item>
+        <el-form-item prop="password">
           <el-input
             show-password
             prefix-icon="el-icon-lock"
@@ -80,6 +80,17 @@ export default {
         loginCode: "",
         // 是否勾选
         isChecked: false
+      },
+      rules:{
+        phone:[
+          {required: true, message: '请输入用户名' , trigger: 'blur'},
+          {min: 6,max: 12,message:'长度在6 到 12 个字符' ,trigger :'blur'}
+        ],
+        password:[
+          {required: true, message: '请输入密码' , trigger: 'blur'},
+          {min: 6,max: 8,message:'长度在6 到 8 个字符' ,trigger :'blur'}
+        ],
+
       }
     };
   }
