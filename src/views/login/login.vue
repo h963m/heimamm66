@@ -4,11 +4,61 @@
     <!-- 左侧盒子 -->
     <div class="left-box">
       <div class="title-box">
-        <img src="../../assets/login-login.png" alt="" class="logo">
+        <img src="../../assets/login-login.png" alt class="logo" />
         <span class="title">黑马面面</span>
         <span class="line"></span>
         <sapan class="sub-title">用户登录</sapan>
       </div>
+      <!-- 表单 -->
+      <el-form ref="form" :model="loginForm" label-width="43px">
+        <!-- 手机号 -->
+        <el-form-item>
+          <el-input
+            prefix-icon="el-icon-user"
+            v-model="loginForm.phone"
+            placeholder="请输入手机号"
+          ></el-input>
+        </el-form-item>
+        <!-- 密码 -->
+        <el-form-item>
+          <el-input
+            show-password
+            prefix-icon="el-icon-lock"
+            v-model="loginForm.password"
+            placeholder="请输入密码"
+          ></el-input>
+        </el-form-item>
+        <!-- 验证码 -->
+        <el-form-item>
+          <el-row>
+            <el-col :span="17">
+              <el-input
+                prefix-icon="el-icon-key"
+                v-model="loginForm.loginCode"
+                placeholder="请输入验证码"
+              ></el-input>
+            </el-col>
+            <el-col :span="7">
+              <!-- 登录验证码 -->
+              <img class="login-code" src="../../assets/login_captcha.png" alt="">
+            </el-col>
+          </el-row>
+        </el-form-item>
+        <el-form-item>
+          <el-checkbox v-model="loginForm.isChecked">
+            我已阅读并同意
+            <el-link type="primary">用户协议</el-link>
+            和
+            <el-link type="primary">隐私条款</el-link>
+
+            </el-checkbox
+          >
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary">登录</el-button>
+          <el-button type="primary">注册</el-button>
+        </el-form-item>
+      </el-form>
     </div>
     <!-- 右侧的图片 -->
     <img src="../../assets/login_banner_ele.png" alt />
