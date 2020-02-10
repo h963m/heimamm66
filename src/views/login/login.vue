@@ -110,7 +110,8 @@ export default {
         ],
         password: [
           { required: true, message: "密码不能为空", trigger: "blur" },
-          { min: 6, max: 12, message: "密码的长度为6-12位", trigger: "blur" }
+          // 边打字边效验 trigger 设置为change
+          { min: 6, max: 12, message: "密码的长度为6-12位", trigger: "change" }
         ]
       }
     };
