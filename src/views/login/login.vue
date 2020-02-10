@@ -70,7 +70,9 @@
             >登录</el-button
           >
           <!-- //loginForm 要加单引号 才会解析成字符串 不加则会解析成js代码 -->
-          <el-button class="my-btn" type="primary" @click="showRegister">注册</el-button>
+          <el-button class="my-btn" type="primary" @click="showRegister"
+            >注册</el-button
+          >
         </el-form-item>
       </el-form>
     </div>
@@ -83,12 +85,12 @@
 
 <script>
 // 导入对话框组件
-import registerDialog from './components/registerDialog'
+import registerDialog from "./components/registerDialog";
 export default {
   // 组建的名字
   name: "login",
   // 注册组件
-  components:{
+  components: {
     registerDialog
   },
   data() {
@@ -129,8 +131,8 @@ export default {
       });
     },
     // 是否显示注册对话框
-    showRegister(){
-      this.$refs.registerDialog.dialogFormVisible = true
+    showRegister() {
+      this.$refs.registerDialog.dialogFormVisible = true;
     }
   }
 };
