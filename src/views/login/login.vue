@@ -43,7 +43,7 @@
                 placeholder="请输入验证码"
               ></el-input>
             </el-col>
-            <el-col :span="7">
+            <el-col :span="7" class="Code">
               <!-- 登录验证码 -->
               <img
                 class="login-code"
@@ -66,7 +66,9 @@
           <el-button
             class="my-btn"
             type="primary"
-            @click="submitForm('loginForm')">登录</el-button>
+            @click="submitForm('loginForm')"
+            >登录</el-button
+          >
           <!-- //loginForm 要加单引号 才会解析成字符串 不加则会解析成js代码 -->
           <el-button class="my-btn" type="primary">注册</el-button>
         </el-form-item>
@@ -110,9 +112,9 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-         this.$message.success('验证成功')
+          this.$message.success("验证成功");
         } else {
-         this.$message.error('验证失败')
+          this.$message.error("验证失败");
           return false;
         }
       });
@@ -162,10 +164,13 @@ export default {
         font-size: 21px;
       }
     }
-    // 登录验证码
-    .login-code {
-      width: 100%;
-      height: 40.8px;
+    .Code {
+      height: 40px;
+      // 登录验证码
+      .login-code {
+        width: 100%;
+        height: 40.8px;
+      }
     }
     .my-btn {
       width: 100%;
