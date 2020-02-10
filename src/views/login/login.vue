@@ -10,15 +10,20 @@
         <sapan class="sub-title">用户登录</sapan>
       </div>
       <!-- 表单 -->
-      <el-form ref="form" :model="loginForm" :rules="rules" label-width="43px">
+      <el-form
+        ref="loginForm"
+        :model="loginForm"
+        :rules="rules"
+        label-width="43px"
+      >
         <!-- 手机号 -->
-        <el-form-item prop="phone">
+        <el-form-item>
           <el-input
             prefix-icon="el-icon-user"
             v-model="loginForm.phone"
             placeholder="请输入手机号"
           ></el-input>
-        </el-form-item> 
+        </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
           <el-input
@@ -29,7 +34,7 @@
           ></el-input>
         </el-form-item>
         <!-- 验证码 -->
-        <el-form-item>
+        <el-form-item prop="loginCode">
           <el-row>
             <el-col :span="17">
               <el-input
@@ -40,22 +45,29 @@
             </el-col>
             <el-col :span="7">
               <!-- 登录验证码 -->
-              <img class="login-code" src="../../assets/login_captcha.png" alt="">
+              <img
+                class="login-code"
+                src="../../assets/login_captcha.png"
+                alt=""
+              />
             </el-col>
           </el-row>
         </el-form-item>
+        <!-- 用户协议 -->
         <el-form-item>
           <el-checkbox v-model="loginForm.isChecked">
             我已阅读并同意
             <el-link type="primary">用户协议</el-link>
             和
             <el-link type="primary">隐私条款</el-link>
-
-            </el-checkbox
-          >
+          </el-checkbox>
         </el-form-item>
         <el-form-item>
-          <el-button class="my-btn" type="primary">登录</el-button>
+          <el-button
+            class="my-btn"
+            type="primary"
+            @click="submitForm('loginForm')">登录</el-button>
+          <!-- //loginForm 要加单引号 才会解析成字符串 不加则会解析成js代码 -->
           <el-button class="my-btn" type="primary">注册</el-button>
         </el-form-item>
       </el-form>
@@ -81,18 +93,30 @@ export default {
         // 是否勾选
         isChecked: false
       },
-      rules:{
-        phone:[
-          {required: true, message: '请输入用户名' , trigger: 'blur'},
-          {min: 6,max: 12,message:'长度在6 到 12 个字符' ,trigger :'blur'}
+      rules: {
+        loginCode: [
+          { required: true, message: "验证码不能为空", trigger: "blur" },
+          { min: 4, max: 4, message: "验证码的长度为4位", trigger: "blur" }
         ],
-        password:[
-          {required: true, message: '请输入密码' , trigger: 'blur'},
-          {min: 6,max: 8,message:'长度在6 到 8 个字符' ,trigger :'blur'}
-        ],
-
+        password: [
+          { required: true, message: "密码不能为空", trigger: "blur" },
+          { min: 6, max: 12, message: "密码的长度为6-12位", trigger: "blur" }
+        ]
       }
     };
+  },
+  methods: {
+    // 表单验证
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+         this.$message.success('验证成功')
+        } else {
+         this.$message.error('验证失败')
+          return false;
+        }
+      });
+    }
   }
 };
 </script>
@@ -139,7 +163,7 @@ export default {
       }
     }
     // 登录验证码
-    .login-code{
+    .login-code {
       width: 100%;
       height: 40.8px;
     }
@@ -152,7 +176,7 @@ export default {
   // 协议区的布局
   .el-checkbox {
     display: flex;
-    .el-checkbox__label{
+    .el-checkbox__label {
       display: flex;
     }
   }
